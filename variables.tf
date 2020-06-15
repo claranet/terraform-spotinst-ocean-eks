@@ -11,7 +11,6 @@ variable "spotinst_account" {
 variable "cluster_identifier" {
   type        = string
   description = "Cluster identifier"
-  default     = null
 }
 
 variable "cluster_name" {
@@ -33,7 +32,6 @@ variable "region" {
 variable "ami_id" {
   type        = string
   description = "The image ID for the EKS worker nodes. If none is provided, Terraform will search for the latest version of their EKS optimized worker AMI based on platform"
-  default     = null
 }
 
 variable "min_size" {
@@ -61,4 +59,24 @@ variable "associate_public_ip_address" {
   type        = bool
   description = "Associate a public IP address to worker nodes"
   default     = false
+}
+
+variable "vpc_id" {
+  type = string
+  description = "The VPC ID that Kubernetes cluster is created in."
+}
+
+variable "vpc_private_subnets" {
+  type = list(string)
+  description = "The VPC private subnets that the Kubernetes cluster is configured to use."
+}
+
+variable "worker_security_group_id" {
+  type = string
+  description = "The worker security group"
+}
+
+variable "kubeconfig_filename" {
+  type = string
+  description = "The path to the Kubeconfig for the cluster."
 }
