@@ -79,6 +79,8 @@ resource "spotinst_ocean_aws" "this" {
   user_data = <<-EOF
     #!/bin/bash
     set -o xtrace
+    yum install -y amazon-ssm-agent
+    systemctl enable --now amazon-ssm-agent.service
     /etc/eks/bootstrap.sh ${var.cluster_name}
 EOF
 
