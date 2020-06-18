@@ -19,23 +19,6 @@ resource "random_string" "suffix" {
   special = false
 }
 
-resource "aws_security_group" "all_worker_mgmt" {
-  name_prefix = "all_worker_management"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "tcp"
-
-    cidr_blocks = [
-      "10.0.0.0/8",
-      "172.16.0.0/12",
-      "192.168.0.0/16",
-    ]
-  }
-}
-
 resource "aws_iam_role" "workers" {
   name_prefix           = var.cluster_name
   assume_role_policy    = data.aws_iam_policy_document.workers_assume_role_policy.json
@@ -76,7 +59,7 @@ resource "spotinst_ocean_aws" "this" {
   desired_capacity            = var.desired_capacity
   subnet_ids                  = var.vpc_private_subnets
   image_id                    = var.ami_id
-  security_groups             = [aws_security_group.all_worker_mgmt.id, var.worker_security_group_id]
+  security_groups             = [var.worker_security_group_id]
   key_name                    = var.key_name
   associate_public_ip_address = var.associate_public_ip_address
   iam_instance_profile        = aws_iam_instance_profile.workers.arn
