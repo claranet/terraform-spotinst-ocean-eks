@@ -47,6 +47,7 @@ variable "max_size" {
 variable "desired_capacity" {
   type        = number
   description = "The number of worker nodes to launch and maintain in the Ocean cluster"
+  default     = null
 }
 
 variable "key_name" {
@@ -62,21 +63,21 @@ variable "associate_public_ip_address" {
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The VPC ID that Kubernetes cluster is created in."
 }
 
 variable "vpc_private_subnets" {
-  type = list(string)
+  type        = list(string)
   description = "The VPC private subnets that the Kubernetes cluster is configured to use."
 }
 
 variable "worker_security_group_id" {
-  type = string
+  type        = string
   description = "The worker security group"
 }
 
 variable "kubeconfig_filename" {
-  type = string
+  type        = string
   description = "The path to the Kubeconfig for the cluster."
 }
