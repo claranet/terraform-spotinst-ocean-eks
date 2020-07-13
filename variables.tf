@@ -81,3 +81,14 @@ variable "kubeconfig_filename" {
   type        = string
   description = "The path to the Kubeconfig for the cluster."
 }
+
+variable "cluster_load_balancers" {
+  description = "Array of load balancer objects to add to ocean cluster. See https://www.terraform.io/docs/providers/spotinst/r/ocean_aws.html#load_balancers"
+  type = list(object({
+    arn  = string
+    name = string
+    type = string
+  }))
+
+  default = null
+}

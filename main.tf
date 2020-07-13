@@ -64,6 +64,16 @@ resource "spotinst_ocean_aws" "this" {
   associate_public_ip_address = var.associate_public_ip_address
   iam_instance_profile        = aws_iam_instance_profile.workers.arn
 
+  dynamic "load_balancers" {
+    for_each = var.cluster_load_balancers
+
+    content {
+      arn  = load_balancers.value.arn
+      type = load_balancers.value.type
+      name = load_balancers.value.name
+    }
+  }
+
   user_data = <<-EOF
     #!/bin/bash
     set -o xtrace
