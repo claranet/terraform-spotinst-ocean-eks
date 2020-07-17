@@ -92,3 +92,15 @@ variable "cluster_load_balancers" {
 
   default = null
 }
+
+variable "whitelist" {
+  description = "(Optional) Instance types allowed in the Ocean cluster. Cannot be configured if blacklist is configured."
+  type        = list(string)
+  default     = null
+}
+
+variable "blacklist" {
+  description = "(Optional) Instance types not allowed in the Ocean cluster. Cannot be configured if whitelist is configured."
+  type        = list(string)
+  default     = null
+}

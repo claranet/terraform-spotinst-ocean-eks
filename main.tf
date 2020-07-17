@@ -63,6 +63,8 @@ resource "spotinst_ocean_aws" "this" {
   key_name                    = var.key_name
   associate_public_ip_address = var.associate_public_ip_address
   iam_instance_profile        = aws_iam_instance_profile.workers.arn
+  whitelist                   = var.whitelist
+  blacklist                   = var.blacklist
 
   dynamic "load_balancers" {
     for_each = var.cluster_load_balancers
