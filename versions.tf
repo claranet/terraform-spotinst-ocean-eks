@@ -1,13 +1,34 @@
 terraform {
-  required_version = ">= 0.12.0"
+  required_version = ">= 0.13"
 
   required_providers {
-    aws        = ">= 2.52.0"
-    spotinst   = ">= 1.14.0"
-    local      = ">= 1.2"
-    null       = ">= 2.1"
-    template   = ">= 2.1"
-    random     = ">= 2.1"
-    kubernetes = ">= 1.11"
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 2.52.0"
+    }
+    spotinst = {
+      source  = "terraform-providers/spotinst"
+      version = ">= 1.14.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = ">= 1.2"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = ">= 2.1"
+    }
+    template = {
+      source  = "hashicorp/template"
+      version = ">= 2.1"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 2.1"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 1.11"
+    }
   }
 }
